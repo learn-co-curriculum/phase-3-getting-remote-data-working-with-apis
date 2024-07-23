@@ -2,17 +2,20 @@ require 'net/http'
 require 'open-uri'
 require 'json'
  
-class GetPrograms
+class GetCoins
+  URL = "https://api.coincap.io/v2/assets"
 
-  URL = "http://data.cityofnewyork.us/resource/uvks-tn5n.json"
-
-  def get_programs
+  def get_coins
     uri = URI.parse(URL)
     response = Net::HTTP.get_response(uri)
     response.body
   end
 
+  def print_coins
+    coins = JSON.parse(self.get_coins)
+    coins["data"].map { |coin| coin["name"] }
+  end
 end
 
-programs = GetPrograms.new.get_programs
-puts programs
+coins = GetCoins.new.make_coins
+puts coins
