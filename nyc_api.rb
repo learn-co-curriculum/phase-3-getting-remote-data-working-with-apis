@@ -1,10 +1,10 @@
 require 'net/http'
- require 'open-uri'
- require 'json'
- 
- class GetPrograms
+require 'open-uri'
+require 'json'
 
-  URL = "http://data.cityofnewyork.us/resource/uvks-tn5n.json"
+class GetPrograms
+
+  URL = "https://bronx.lehman.cuny.edu/resource/x9zi-ukip.json"
 
   def get_programs
     uri = URI.parse(URL)
@@ -21,5 +21,5 @@ require 'net/http'
 
 end
 
- programs = GetPrograms.new.get_programs
- puts programs
+programs = GetPrograms.new
+puts programs.program_school
